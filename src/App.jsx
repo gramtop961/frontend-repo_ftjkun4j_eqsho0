@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
-import Navbar from './components/Navbar.jsx';
-import Hero from './components/Hero.jsx';
-import ChaptersSection from './components/ChaptersSection.jsx';
-import ResourceModal from './components/ResourceModal.jsx';
+import NeuroNav from './components/NeuroNav.jsx';
+import NeuroHero from './components/NeuroHero.jsx';
+import NeuroChapters from './components/NeuroChapters.jsx';
+import NeuroModal from './components/NeuroModal.jsx';
+import QuickPractice from './components/QuickPractice.jsx';
 
 // Static catalog of 20 IBDP Mathematics AA HL chapters with sample resources
 const CHAPTERS = [
@@ -461,13 +462,16 @@ export default function App() {
   }, [query]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-slate-800">
-      <Navbar query={query} onQueryChange={setQuery} />
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Hero />
-        <ChaptersSection chapters={filteredChapters} onSelect={setSelected} />
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <NeuroNav query={query} onQueryChange={setQuery} />
+      <main className="mx-auto max-w-[100vw]">
+        <NeuroHero />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <NeuroChapters chapters={filteredChapters} onSelect={setSelected} />
+        </div>
+        <QuickPractice />
       </main>
-      <ResourceModal chapter={selected} onClose={() => setSelected(null)} />
+      <NeuroModal chapter={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }
